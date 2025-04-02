@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,10 +76,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+USER = os.getenv("SQL_USER")
+PASSWORD = os.getenv("SQL_KEY")
+HOST = os.getenv("SQL_SERVER")
+DATABASE = os.getenv("SQL_DATABASE")
+PAD_DATABASE = os.getenv("SQL_PAD_DATABASE")
+DRIVER = os.getenv("SQL_DRIVER")
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssgl',
+        'NAME': DATABASE,
+        'HOST': HOST,
+        'PORT': '',
+        'OPTIONS': {
+            'driver': DRIVER
+        }
     }
 }
 
