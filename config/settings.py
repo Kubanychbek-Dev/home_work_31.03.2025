@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #Project apps
+    'users'
+
 ]
 
 MIDDLEWARE = [
@@ -85,7 +89,7 @@ DRIVER = os.getenv("SQL_DRIVER")
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mssgl',
+        'ENGINE': 'mssql',
         'NAME': DATABASE,
         'HOST': HOST,
         'PORT': '',
