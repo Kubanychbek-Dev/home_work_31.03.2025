@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     #Project apps
     'users',
-    'dogs'
+    'dogs',
 
 ]
 
