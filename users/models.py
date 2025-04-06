@@ -16,6 +16,6 @@ class User(AbstractUser):
 
 
     class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
+        verbose_name = "Users"
+        verbose_name_plural = "User"
         ordering = ["id"]
