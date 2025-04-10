@@ -1,0 +1,15 @@
+.breeds-title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 60px
+}
+
+.card-text {
+font-weight: bolder;
+color: #333;
+}
+
+.breeds-btn {
+  font-weight: bolder;
+  padding: 8px 10px;
+}

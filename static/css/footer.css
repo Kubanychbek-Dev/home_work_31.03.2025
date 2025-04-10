@@ -1,0 +1,15 @@
+footer {
+  background-color: hsl(0, 30%, 8%);
+  padding: 26px 0;
+}
+
+.footer-text {
+  text-align: center;
+
+  a {
+    text-decoration: none;
+  color: green;
+  font-weight: bolder;
+  font-size: 30px;
+  }
+}
