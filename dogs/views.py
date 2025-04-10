@@ -51,7 +51,7 @@ def dog_create_view(request):
         "title": "Добавить собаку",
         "form": DogForm
     }
-    return render(request, "dogs/create.html", context=context)
+    return render(request, "dogs/create_update.html", context=context)
 
 
 def dog_detail_view(request, pk):
@@ -76,7 +76,7 @@ def dog_update_view(request, pk):
         "title": "Изменить данные",
         "form": DogForm(instance=dog_object)
     }
-    return render(request, "dogs/update.html", context=context)
+    return render(request, "dogs/create_update.html", context=context)
 
 
 def dog_delete_view(request, pk):
