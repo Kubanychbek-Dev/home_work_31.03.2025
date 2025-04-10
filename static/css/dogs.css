@@ -1,0 +1,32 @@
+.dog-title {
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 32px;
+}
+
+.dog-card {
+  transition: all 0.6s;
+}
+
+.dog-card:hover {
+  border-width: 1px;
+  border-color: green;
+}
+
+.dog-img {
+  width: 100%;
+  height: 264px;
+  object-fit: cover;
+}
+
+.card-text {
+  font-weight: bolder;
+  font-size: 24px;
+}
+
+.dog-btn {
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: 20px;
+  color: #333;
+}
