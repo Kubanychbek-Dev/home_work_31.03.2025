@@ -6,4 +6,4 @@ register = template.Library()
 def dogs_media(val):
     if val:
         return fr"/media/{val}"
-    return "static/dummydog.jpg"
+    return "/static/dummydog.jpg"
