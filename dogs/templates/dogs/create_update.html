@@ -6,13 +6,21 @@
     <div class="col-6">
         <div class="card">
             <div class="card-header">
-                {{ title }}
+                {% if object %}
+                   Обновление данных:
+                {% else %}
+                   Введите данные
+                {% endif %}
             </div>
             <div class="card-body">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button class="sub-btn btn btn-outline-success">
-                    Добавить
+                    {% if object %}
+                       Сохранить
+                    {% else %}
+                       Добавить
+                    {% endif %}
                 </button>
             </div>
         </div>
