@@ -1,0 +1,11 @@
+.delete-card-img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 2%;
+}
+
+.delete-btn {
+  padding: 8px 28px;
+  border-color: #ddd;
+  font-weight: bolder;
+}
