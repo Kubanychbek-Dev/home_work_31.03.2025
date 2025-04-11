@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "dogs/base.html" %}
+{% load my_tags %}
 
-</body>
-</html>
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card box-shadow detail-card">
+                <img class="dog-detail-img"
+                src="{{ object.img|dogs_media }}" alt="{{ object.breed.name }}">
+                <div class="card-body">
+                    <p class="card-text dog-name">{{ object.name }}</p>
+                    <p class="card-text">{{ object.breed.name }}</p>
+                    <p class="card-text">{{ object.breed.description }}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="detail-links">
+                        <a class="detail-btn btn-link" href="{% url 'dogs:dog_update' object.pk %}">
+                        Update
+                    </a>
+                    <a class="detail-btn btn-link" href="{% url 'dogs:dog_delete' object.pk %}">
+                        Delete
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
