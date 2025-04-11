@@ -1,0 +1,16 @@
+.detail-card {
+  border-radius: 6%;
+  border-color: black;
+  overflow: hidden;
+}
+
+.detail-btn {
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.detail-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
