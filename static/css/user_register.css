@@ -1,0 +1,28 @@
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  display: none;
+}
+
+#id_email {
+  width: 300px;
+  font-weight: bold;
+  border-radius: 1%;
+}
+
+.password,
+.confirm-password {
+  width: 300px;
+  font-weight: bold;
+  border-radius: 1%;
+}
+
+.register-btn {
+  border-radius: 6%;
+  padding: 4px 8px;
+  font-weight: bold;
+}
