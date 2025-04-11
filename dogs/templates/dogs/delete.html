@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "dogs/base.html" %}
+{% load my_tags %}
 
-</body>
-</html>
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="card">
+            <form class="delete-form" method="post" enctype="multipart/form-data">
+            <div class="card-header">
+                    {% if object %}
+                       Are you sure?
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <img class="delete-card-img" src="{{ object.img|dogs_media }}"
+                    alt="{{ object.breed.name }}">
+                </div>
+                 <div class="card-body">
+                    <p class="card-text delete-card-text">
+                        {{ object.name }}
+                    </p>
+                </div>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="delete-btn" type="submit">
+                    {% if object %}
+                       Delete
+                    {% endif %}
+                </button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
