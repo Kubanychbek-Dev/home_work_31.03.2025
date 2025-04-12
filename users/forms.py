@@ -23,3 +23,12 @@ class UserRegisterForm(forms.ModelForm):
         if cleaned_data["password"] != cleaned_data["password2"]:
             raise forms.ValidationError("Does not match")
         return cleaned_data["password2"]
+
+
+class UserLoginForm(forms.Form):
+    email = forms.EmailField(label="", required=True)
+    password = forms.CharField(label="", required=True, widget=forms.PasswordInput(attrs={
+        "placeholder": "Your password",
+        "class": "password",
+        "id": "password"
+    }))

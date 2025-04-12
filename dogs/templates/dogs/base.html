@@ -31,9 +31,21 @@
                 <li class="item">
                   <a class="item-link" href="{% url 'dogs:dog_create' %}">Добавить</a>
                 </li>
-                  <li class="item">
-                  <a class="item-link" href="{% url 'users:user_register' %}">Регистрация</a>
-                </li>
+                {% if user.is_authenticated %}
+                     <li class="item">
+                     <a class="item-link" href="{% url 'users:user_login' %}">Профиль</a>
+                     </li>
+                     <li class="item">
+                     <a class="item-link" href="{% url 'users:user_register' %}">Выход</a>
+                   </li>
+                {% else %}
+                     <li class="item">
+                     <a class="item-link" href="{% url 'users:user_login' %}">Вход</a>
+                     </li>
+                     <li class="item">
+                     <a class="item-link" href="{% url 'users:user_register' %}">Регистрация</a>
+                     </li>
+                 {% endif %}
               </ul>
             </nav>
             <button class="header-btn">

@@ -1,0 +1,11 @@
+.enter-card {
+  margin-top: 40px;
+}
+
+.enter-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 4px 32px;
+  border-radius: 6px;
+  font-weight: bolder;
+}
