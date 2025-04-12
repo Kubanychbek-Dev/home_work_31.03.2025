@@ -4,13 +4,25 @@
   overflow: hidden;
 }
 
-.detail-btn {
-  text-decoration: none;
-  font-size: 24px;
+.card-footer {
+ width: 100%;
 }
 
 .detail-links {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  list-style: none;
+}
+
+.detail-btn {
+  text-decoration: none;
+  font-size: 24px;
+  color: green;
+  font-weight: bold;
+}
+
+.detail-btn:hover {
+  text-decoration: underline;
+  color: red;
 }

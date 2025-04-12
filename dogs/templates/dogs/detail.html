@@ -15,14 +15,18 @@
                     <p class="card-text">{{ object.breed.description }}</p>
                 </div>
                 <div class="card-footer">
-                    <div class="detail-links">
-                        <a class="detail-btn btn-link" href="{% url 'dogs:dog_update' object.pk %}">
+                    <ul class="detail-links">
+                        <li>
+                            <a class="detail-btn btn-link" href="{% url 'dogs:dog_update' object.pk %}">
                         Update
                     </a>
-                    <a class="detail-btn btn-link" href="{% url 'dogs:dog_delete' object.pk %}">
+                        </li>
+                    <li>
+                        <a class="detail-btn btn-link" href="{% url 'dogs:dog_delete' object.pk %}">
                         Delete
                     </a>
-                    </div>
+                    </li>
+                    </ul>
                 </div>
             </div>
         </div>
