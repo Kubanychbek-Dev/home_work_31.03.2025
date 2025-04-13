@@ -17,12 +17,12 @@ class StyleFormMixin:
 
 
 class UserRegisterForm(StyleFormMixin, forms.ModelForm):
-    password = forms.CharField(label="", required=True, widget=forms.PasswordInput(attrs={
+    password = forms.CharField(label="Password", required=True, widget=forms.PasswordInput(attrs={
         "placeholder": "Your password",
         "class": "password",
         "id": "password"
     }))
-    password2 = forms.CharField(label="", required=True, widget=forms.PasswordInput(attrs={
+    password2 = forms.CharField(label="Confirm Password", required=True, widget=forms.PasswordInput(attrs={
         "placeholder": "Confirm Password",
         "class": "confirm-password",
         "id": "confirm-password"
@@ -40,8 +40,8 @@ class UserRegisterForm(StyleFormMixin, forms.ModelForm):
 
 
 class UserLoginForm(StyleFormMixin, forms.Form):
-    email = forms.EmailField(label="", required=True)
-    password = forms.CharField(label="", required=True, widget=forms.PasswordInput(attrs={
+    email = forms.EmailField(label="Email", required=True)
+    password = forms.CharField(label="Password", required=True, widget=forms.PasswordInput(attrs={
         "placeholder": "Your password",
         "class": "password",
         "id": "password"

@@ -4,10 +4,6 @@
   align-items: center;
 }
 
-label {
-  display: none;
-}
-
 #id_email {
   width: 300px;
   font-weight: bold;
