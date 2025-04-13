@@ -28,6 +28,7 @@
             <span class="profile-span">Email:</span>
             {{ user.email|default:"Not specified" }}
           </p>
+            <a class="profile-update-link" href="{% url 'users:user_update' %}">Update</a>
         </div>
       </div>
     </div>

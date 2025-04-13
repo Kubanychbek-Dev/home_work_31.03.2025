@@ -31,6 +31,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrapper: wrapper;
+  margin-bottom: 20px;
 }
 
 .profile-span {
@@ -38,3 +39,17 @@
   font-weight: bold;
 }
 
+.profile-update-link {
+  font-weight: bold;
+  text-decoration: none;
+  color: green;
+  border: 2px solid green;
+  padding: 3px 25px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.profile-update-link:hover {
+  color: #fff;
+  background-color: green;
+}

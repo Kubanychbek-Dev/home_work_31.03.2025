@@ -9,6 +9,13 @@ class StyleFormMixin:
             field.widget.attrs["class"] = "form-control"
 
 
+# class UserForm(StyleFormMixin, forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ("email", "first_name", "last_name", "phone",)
+
+
+
 class UserRegisterForm(StyleFormMixin, forms.ModelForm):
     password = forms.CharField(label="", required=True, widget=forms.PasswordInput(attrs={
         "placeholder": "Your password",
@@ -39,3 +46,9 @@ class UserLoginForm(StyleFormMixin, forms.Form):
         "class": "password",
         "id": "password"
     }))
+
+
+class UserUpdateForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("email", "first_name", "last_name", "phone", "avatar",)
