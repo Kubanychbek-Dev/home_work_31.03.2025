@@ -47,6 +47,11 @@
   padding: 3px 25px;
   border-radius: 8px;
   background-color: #fff;
+  margin-bottom: 18px;
+}
+
+.profile-update-link:last-child {
+  margin-bottom: 0;
 }
 
 .profile-update-link:hover {

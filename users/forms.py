@@ -1,6 +1,7 @@
 from django import forms
 from .models import User
 from .validators import validate_password
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 class StyleFormMixin:
@@ -47,3 +48,7 @@ class UserUpdateForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = User
         fields = ("email", "first_name", "last_name", "phone", "avatar",)
+
+
+class UserChangePasswordForm(StyleFormMixin, PasswordChangeForm):
+    pass
