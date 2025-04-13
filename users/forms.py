@@ -2,7 +2,14 @@ from django import forms
 from .models import User
 
 
-class UserRegisterForm(forms.ModelForm):
+class StyleFormMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs["class"] = "form-control"
+
+
+class UserRegisterForm(StyleFormMixin, forms.ModelForm):
     password = forms.CharField(label="", required=True, widget=forms.PasswordInput(attrs={
         "placeholder": "Your password",
         "class": "password",
@@ -25,7 +32,7 @@ class UserRegisterForm(forms.ModelForm):
         return cleaned_data["password2"]
 
 
-class UserLoginForm(forms.Form):
+class UserLoginForm(StyleFormMixin, forms.Form):
     email = forms.EmailField(label="", required=True)
     password = forms.CharField(label="", required=True, widget=forms.PasswordInput(attrs={
         "placeholder": "Your password",
