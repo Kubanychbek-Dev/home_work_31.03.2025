@@ -1,5 +1,6 @@
 from django import forms
 from .models import User
+from .validators import validate_password
 
 
 class StyleFormMixin:
@@ -7,13 +8,6 @@ class StyleFormMixin:
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs["class"] = "form-control"
-
-
-# class UserForm(StyleFormMixin, forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ("email", "first_name", "last_name", "phone",)
-
 
 
 class UserRegisterForm(StyleFormMixin, forms.ModelForm):
@@ -34,6 +28,7 @@ class UserRegisterForm(StyleFormMixin, forms.ModelForm):
 
     def clean_password2(self):
         cleaned_data = self.cleaned_data
+        validate_password(cleaned_data["password"])
         if cleaned_data["password"] != cleaned_data["password2"]:
             raise forms.ValidationError("Does not match")
         return cleaned_data["password2"]
