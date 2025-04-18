@@ -25,6 +25,12 @@ class UserRegisterForm(StyleFormMixin, UserCreationForm):
         return cleaned_data["password2"]
 
 
+class UserForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("email", "first_name", "last_name", "phone", "avatar",)
+
+
 # class UserLoginForm(StyleFormMixin, forms.Form):
 #     email = forms.EmailField(label="Email", required=True)
 #     password = forms.CharField(label="Password", required=True, widget=forms.PasswordInput(attrs={
