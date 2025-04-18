@@ -10,9 +10,12 @@
                 <img class="dog-detail-img"
                 src="{{ object.img|dogs_media }}" alt="{{ object.breed.name }}">
                 <div class="card-body">
-                    <p class="card-text dog-name">{{ object.name }}</p>
-                    <p class="card-text">{{ object.breed.name }}</p>
-                    <p class="card-text">{{ object.breed.description }}</p>
+                    <p class="card-text dog-name"><span class="dog_description">Dog Name:</span> {{ object.name }}</p>
+                    <p class="card-text"><span class="dog_description">Dog Breed:</span> {{ object.breed.name }}</p>
+                    <p class="card-text"><span class="dog_description">Breed Description:</span> {{ object.breed.description }}</p>
+                    <p class="card-text"><span class="dog_description">Owner Name:</span> {{ object.owner.first_name|default:"Not specified" }}</p>
+                    <p class="card-text"><span class="dog_description">Owner Phone:</span> {{ object.owner.phone|default:"Not specified" }}</p>
+                    <p class="card-text"><span class="dog_description">Owner email:</span> {{ object.owner.email|default:"Not specified" }}</p>
                 </div>
                 <div class="card-footer">
                     <ul class="detail-links">
