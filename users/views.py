@@ -166,9 +166,14 @@ class UserPasswordChangeView(PasswordChangeView):
 #     return redirect("dogs:index")
 
 
-class UserLogoutView(LogoutView):
-    pass
+# class UserLogoutView(LogoutView):
+#     pass
 
+class UserLogoutView(LogoutView):
+    template_name = "users/user_logout.html"
+    extra_context = {
+        "title": "Выход из аккаунта"
+    }
 
 @login_required(login_url="users:user_login")
 def user_generate_new_password(request):
