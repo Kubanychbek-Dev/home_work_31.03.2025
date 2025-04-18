@@ -18,11 +18,16 @@ from .services import send_register_email, send_new_password
 class UserRegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
-    success_url = reverse_lazy("users:user_login")
     template_name = "users/user_register.html"
     extra_context = {
         "title": "Create account"
     }
+
+    def form_valid(self, form):
+        user = form.save()
+        send_register_email(user.email)
+        return HttpResponseRedirect(reverse("users:user_login"))
+
 
 # def user_register_view(request):
 #     form = UserRegisterForm(request.POST)
