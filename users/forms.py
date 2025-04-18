@@ -1,7 +1,7 @@
 from django import forms
 from .models import User
 from .validators import validate_password
-from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm, AuthenticationForm
 
 
 class StyleFormMixin:
@@ -25,13 +25,17 @@ class UserRegisterForm(StyleFormMixin, UserCreationForm):
         return cleaned_data["password2"]
 
 
-class UserLoginForm(StyleFormMixin, forms.Form):
-    email = forms.EmailField(label="Email", required=True)
-    password = forms.CharField(label="Password", required=True, widget=forms.PasswordInput(attrs={
-        "placeholder": "Your password",
-        "class": "password",
-        "id": "password"
-    }))
+# class UserLoginForm(StyleFormMixin, forms.Form):
+#     email = forms.EmailField(label="Email", required=True)
+#     password = forms.CharField(label="Password", required=True, widget=forms.PasswordInput(attrs={
+#         "placeholder": "Your password",
+#         "class": "password",
+#         "id": "password"
+#     }))
+
+
+class UserLoginForm(StyleFormMixin, AuthenticationForm):
+    pass
 
 
 class UserUpdateForm(StyleFormMixin, forms.ModelForm):

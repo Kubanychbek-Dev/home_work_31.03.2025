@@ -40,22 +40,30 @@ class UserRegisterView(CreateView):
 #     return render(request, "users/user_register.html", context=context)
 
 
-def user_login_view(request):
-    if request.method == "POST":
-        form = UserLoginForm(request.POST)
-        if form.is_valid():
-            cleaned_data = form.cleaned_data
-            user = authenticate(email=cleaned_data["email"], password=cleaned_data["password"])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponseRedirect(reverse("dogs:index"))
-            return HttpResponse("Вы не зарегистрированы либо неверно введены данные")
-    context = {
-        "title": "Вход в аккаунт",
-        "form": UserLoginForm
+# def user_login_view(request):
+#     if request.method == "POST":
+#         form = UserLoginForm(request.POST)
+#         if form.is_valid():
+#             cleaned_data = form.cleaned_data
+#             user = authenticate(email=cleaned_data["email"], password=cleaned_data["password"])
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return HttpResponseRedirect(reverse("dogs:index"))
+#             return HttpResponse("Вы не зарегистрированы либо неверно введены данные")
+#     context = {
+#         "title": "Вход в аккаунт",
+#         "form": UserLoginForm
+#     }
+#     return render(request, "users/user_login.html", context=context)
+
+
+class UserLoginView(LoginView):
+    form_class = UserLoginForm
+    template_name = "users/user_login.html"
+    extra_context = {
+        "title": "Вход в аккаунт"
     }
-    return render(request, "users/user_login.html", context=context)
 
 
 @login_required(login_url="users:user_login")
