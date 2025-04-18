@@ -130,29 +130,44 @@ class UserUpdateView(UpdateView):
         return context_data
 
 
-@login_required(login_url="users:user_login")
-def user_change_password_view(request):
-    user_object = request.user
-    form = UserChangePasswordForm(user_object, request.POST)
-    if request.method == "POST":
-        if form.is_valid():
-            user_object = form.save()
-            update_session_auth_hash(request, user_object)
-            messages.success(request, "Пароль успешно изменен")
-            return HttpResponseRedirect(reverse("users:user_profile"))
-        else:
-            messages.error(request, "Не удалось изменить пароль")
-    context = {
-        "title": "Изменить пароль",
-        "form": form
-    }
-    return render(request, "users/user_change_password.html", context=context)
+# @login_required(login_url="users:user_login")
+# def user_change_password_view(request):
+#     user_object = request.user
+#     form = UserChangePasswordForm(user_object, request.POST)
+#     if request.method == "POST":
+#         if form.is_valid():
+#             user_object = form.save()
+#             update_session_auth_hash(request, user_object)
+#             messages.success(request, "Пароль успешно изменен")
+#             return HttpResponseRedirect(reverse("users:user_profile"))
+#         else:
+#             messages.error(request, "Не удалось изменить пароль")
+#     context = {
+#         "title": "Изменить пароль",
+#         "form": form
+#     }
+#     return render(request, "users/user_change_password.html", context=context)
 
 
-@login_required(login_url="users:user_login")
-def user_logout_view(request):
-    logout(request)
-    return redirect("dogs:index")
+class UserPasswordChangeView(PasswordChangeView):
+    form_class = UserChangePasswordForm
+    template_name = "users/user_change_password.html"
+    success_url = reverse_lazy("users:user_profile")
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data()
+        context_data["title"] = f"Change Password {self.request.user}"
+        return context_data
+
+
+# @login_required(login_url="users:user_login")
+# def user_logout_view(request):
+#     logout(request)
+#     return redirect("dogs:index")
+
+
+class UserLogoutView(LogoutView):
+    pass
 
 
 @login_required(login_url="users:user_login")

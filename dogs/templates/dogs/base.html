@@ -36,7 +36,10 @@
                      <a class="item-link" href="{% url 'users:user_profile' %}">Профиль</a>
                      </li>
                      <li class="item">
-                     <a class="item-link" href="{% url 'users:user_logout' %}">Выход</a>
+                     <form method="post" action="{% url 'users:user_logout' %}">
+                         {% csrf_token %}
+                         <button class="btn btn-danger" type="submit">Выход</button>
+                     </form>
                    </li>
                 {% else %}
                      <li class="item">
