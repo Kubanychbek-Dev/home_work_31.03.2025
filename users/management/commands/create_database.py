@@ -14,9 +14,15 @@ class Command(BaseCommand):
 
         try:
             conn = pyodbc.connect(connection_string)
-            conn.autocommit = True
-            conn.execute(fr"CREATE DATABASE {DATABASE}")
         except pyodbc.ProgrammingError as e:
             print(e)
         else:
-            print(f"Database {DATABASE} created")
+            conn.autocommit = True
+            try:
+                conn.execute(fr"CREATE DATABASE {DATABASE}")
+            except pyodbc.ProgrammingError as e:
+                print(e)
+            else:
+                print(f"Database {DATABASE} created")
+
+
