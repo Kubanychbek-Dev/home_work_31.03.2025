@@ -51,14 +51,14 @@
   color: green;
  }
 
-@media screen and (min-width: 796px) {
+@media screen and (min-width: 995px) {
   .header-btn {
     display: none;
   }
 }
 
 
-@media screen and (max-width: 796px) {
+@media screen and (max-width: 994px) {
   .header {
     position: relative;
   }

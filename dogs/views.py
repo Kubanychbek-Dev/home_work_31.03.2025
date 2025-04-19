@@ -10,7 +10,7 @@ from .forms import DogForm
 def index_view(request):
     context = {
         "object_list": Breed.objects.all()[:3],
-        "title": "PetShop"
+        "title": "PetPlace"
     }
     return render(request, 'dogs/index.html', context=context)
 
@@ -18,7 +18,7 @@ def index_view(request):
 def breeds_list_view(request):
     context = {
         "object_list": Breed.objects.all(),
-        "title": "PetShop - Все наши породы собак"
+        "title": "PetPlace - Все наши породы собак"
     }
     return render(request, 'dogs/breeds.html', context=context)
 

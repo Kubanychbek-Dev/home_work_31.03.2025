@@ -1,0 +1,19 @@
+.logout-title {
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.logout{
+  font-weight: bold;
+  text-decoration: none;
+  color: green;
+  border: 2px solid green;
+  padding: 3px 25px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.logout:hover {
+  color: #fff;
+  background-color: green;
+}
