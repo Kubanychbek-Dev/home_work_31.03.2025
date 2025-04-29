@@ -155,7 +155,7 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
 #     return render(request, "dogs/delete.html", context=context)
 
 
-class DogDeleteView(DeleteView):
+class DogDeleteView(LoginRequiredMixin, DeleteView):
     model = Dog
     template_name = "dogs/delete.html"
     success_url = reverse_lazy("dogs:dogs_list")
