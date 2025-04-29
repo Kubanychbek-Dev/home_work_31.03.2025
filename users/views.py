@@ -27,6 +27,11 @@ class UserRegisterView(CreateView):
         user = form.save()
         send_register_email(user.email)
         return HttpResponseRedirect(reverse("users:user_login"))
+    
+    # def form_valid(self, form):
+    #     self.object = form.save()
+    #     send_register_email(self.object.email)
+    #     return super().form_valid(form)
 
 
 # def user_register_view(request):
