@@ -18,12 +18,20 @@ def index_view(request):
     return render(request, 'dogs/index.html', context=context)
 
 
-def breeds_list_view(request):
-    context = {
-        "object_list": Breed.objects.all(),
-        "title": "PetPlace - Все наши породы собак"
+# def breeds_list_view(request):
+#     context = {
+#         "object_list": Breed.objects.all(),
+#         "title": "PetPlace - Все наши породы собак"
+#     }
+#     return render(request, 'dogs/breeds.html', context=context)
+
+
+class BreedListView(ListView):
+    model = Breed
+    extra_context = {
+        "title": "All our breeds"
     }
-    return render(request, 'dogs/breeds.html', context=context)
+    template_name = "dogs/breeds.html"
 
 
 def breed_dogs_list_view(request, pk: int):
