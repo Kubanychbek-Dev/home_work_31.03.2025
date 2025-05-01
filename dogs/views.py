@@ -67,13 +67,13 @@ class DogListView(ListView):
 #         "title": "Добавить собаку",
 #         "form": DogForm
 #     }
-#     return render(request, "dogs/create_update.html", context=context)
+#     return render(request, "dogs/create.html", context=context)
 
 
 class DogCreateView(LoginRequiredMixin, CreateView):
     model = Dog
     form_class = DogForm
-    template_name = "dogs/create_update.html"
+    template_name = "dogs/create.html"
     extra_context = {
         "title": "Add dog"
     }
@@ -120,13 +120,13 @@ class DogDetailView(DetailView):
 #         "title": "Изменить данные",
 #         "form": DogForm(instance=dog_object)
 #     }
-#     return render(request, "dogs/create_update.html", context=context)
+#     return render(request, "dogs/create.html", context=context)
 
 
 class DogUpdateView(LoginRequiredMixin, UpdateView):
     model = Dog
     form_class = DogForm
-    template_name = "dogs/create_update.html"
+    template_name = "dogs/update.html"
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
