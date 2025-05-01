@@ -34,14 +34,26 @@ class BreedListView(ListView):
     template_name = "dogs/breeds.html"
 
 
-def breed_dogs_list_view(request, pk: int):
-    breed_obj = Breed.objects.get(pk=pk)
-    context = {
-        "object_list": Dog.objects.filter(breed_id=pk),
-        "title": f"Собаки - {breed_obj.name}",
-        "breed_pk": breed_obj.pk
+# def breed_dogs_list_view(request, pk: int):
+#     breed_obj = Breed.objects.get(pk=pk)
+#     context = {
+#         "object_list": Dog.objects.filter(breed_id=pk),
+#         "title": f"Собаки - {breed_obj.name}",
+#         "breed_pk": breed_obj.pk
+#     }
+#     return render(request, 'dogs/dogs.html', context=context)
+
+
+class DogBreedListView(LoginRequiredMixin, ListView):
+    model = Dog
+    template_name = "dogs/dogs.html"
+    extra_context = {
+        "title": "Dogs of the selected breed"
     }
-    return render(request, 'dogs/dogs.html', context=context)
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(breed_id=self.kwargs.get("pk"))
+        return queryset
 
 
 # def dogs_list_view(request):
