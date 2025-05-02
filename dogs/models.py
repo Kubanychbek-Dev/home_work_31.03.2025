@@ -18,7 +18,7 @@ class Dog(models.Model):
     name = models.CharField(max_length=100, verbose_name="Dog name")
     breed = models.ForeignKey(Breed, on_delete=models.CASCADE, verbose_name="Dog Breed")
     img = models.ImageField(upload_to="dogs/", **NULLABLE, verbose_name="Image")
-
+    is_active = models.BooleanField(default=True, verbose_name="Active")
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name="Owner")
 
     def __str__(self):
