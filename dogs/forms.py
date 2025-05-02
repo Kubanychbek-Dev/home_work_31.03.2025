@@ -7,7 +7,7 @@ class DogForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Dog
         # fields = "__all__"
-        exclude = ("owner",)
+        exclude = ("owner", "is_active",)
 
 
 class DogParentForm(StyleFormMixin, forms.ModelForm):
