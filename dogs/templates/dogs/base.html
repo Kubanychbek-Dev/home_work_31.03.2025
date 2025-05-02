@@ -19,6 +19,11 @@
             <a class="logo" href="{% url 'dogs:index' %}">PetPlace</a>
             <nav class="header-nav">
               <ul class="menu">
+                  {% if user.is_superuser %}
+                      <li class="item">
+                          <a class="item-link admin-btn" href="/admin/">Admin</a>
+                     </li>
+                  {% endif %}
                 <li class="item">
                   <a class="item-link" href="{% url 'dogs:index' %}">Главная</a>
                 </li>

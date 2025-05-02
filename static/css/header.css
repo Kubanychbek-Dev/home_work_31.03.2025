@@ -51,6 +51,11 @@
   color: green;
  }
 
+.admin-btn {
+  color: green;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 995px) {
   .header-btn {
     display: none;
