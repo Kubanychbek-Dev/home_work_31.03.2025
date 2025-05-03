@@ -1,0 +1,15 @@
+{% load my_tags %}
+<div class="col-12 col-md-4">
+  <div class="card box-shadow">
+    <div class="card-header">
+      <img class="user-img" src="{{ object.avatar|user_media }}" alt="User img">
+    </div>
+    <div class="card-body">
+      <h2 class="user-name">{{ object.first_name }} {{ object.last_name }}</h2>
+      <ul class="user-information">
+        <li><span>E-mail:</span><br> {{ object.email|default:"Not specified" }}</li>
+        <li><span>Phone:</span><br> {{ object.phone|default:"Not specified" }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

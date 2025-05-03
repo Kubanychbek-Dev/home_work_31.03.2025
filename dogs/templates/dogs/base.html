@@ -38,6 +38,9 @@
                 </li>
                 {% if user.is_authenticated %}
                      <li class="item">
+                     <a class="item-link" href="{% url 'users:users_list' %}">All users</a>
+                     </li>
+                     <li class="item">
                      <a class="item-link" href="{% url 'users:user_profile' %}">Профиль</a>
                      </li>
                      <li class="item">

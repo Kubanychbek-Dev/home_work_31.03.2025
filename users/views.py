@@ -7,7 +7,9 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, PasswordChangeView, LogoutView
-from django.views.generic import CreateView, UpdateView
+from django.template.defaultfilters import title
+from django.views.generic import CreateView, UpdateView, DetailView, ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 from .models import User
@@ -187,3 +189,11 @@ def user_generate_new_password(request):
     request.user.save()
     send_new_password(request.user.email, new_password)
     return redirect(reverse("dogs:index"))
+
+
+class UserListView(LoginRequiredMixin, ListView):
+    model = User
+    extra_context = {
+        "title": "All our users"
+    }
+    template_name = "users/users.html"
