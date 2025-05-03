@@ -5,24 +5,13 @@
 
 <div class="container">
     <div class="row">
-        <h1 class="dog-title">{{title}}</h1>
-        {% for object in object_list %}
-             <div class="col-12 col-md-4">
-                 <div class="dog-card card mb-4 box-shadow">
-                     <img class="card-img-top dog-img"
-                     src="{{ object.img|dogs_media }}" alt="Dog img">
-                     <div class="card-body">
-                         <p class="card-text">{{ object.name|title }}</p>
-                     </div>
-                     <div class="card-footer">
-                         <a class="dog-btn btn btn-link" href="{% url 'dogs:dog_detail' object.pk %}">
-                             Подробнее
-                         </a>
-                     </div>
-                 </div>
-             </div>
-        {% endfor %}
+        <h1 class="dog-title">{{ title }}</h1>
+            {% for object in object_list %}
+                {% include "dogs/includes/inc_dog_card.html" with object=object %}
+            {% endfor %}
     </div>
+            <a href="{% url 'dogs:dogs_list' %}">Active dogs</a>
+            <a href="{% url 'dogs:dogs_deactivated_list' %}">Inactive dogs</a>
 </div>
 
 {% endblock%}

@@ -15,13 +15,21 @@
             <div class="card-body">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="sub-btn btn btn-outline-success">
-                    {% if object %}
-                       Сохранить
+                <input class="sub-btn btn btn-outline-success" type="submit"
+                       value="{% if object %}Save{% else %}Add{% endif %}">
+                <a class="sub-btn btn btn-outline-warning" href="{% url 'dogs:dog_toggle_activity' object.pk %}">
+                    {% if object.is_active %}
+                      Deactivation
                     {% else %}
-                       Добавить
+                       Activation
                     {% endif %}
-                </button>
+                </a>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-outline-primary" href="{% url 'dogs:dogs_list' %}">Back</a>
+                {% if object and user.is_superuser %}
+                  <a class="btn btn-outline-danger" href="{% url 'dogs:dog_delete' object.pk %}">Delete</a>
+                {% endif %}
             </div>
         </div>
     </div>
