@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.forms import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 from . models import Breed, Dog, DogParent
-from .forms import DogForm, DogParentForm
+from .forms import DogForm, DogParentForm, DogAdminForm
 from .services import send_views_email
 from users.models import UserRoles
 
@@ -155,7 +155,7 @@ class DogDetailView(DetailView):
             dog_object_increase.views_count()
         if object_.owner:
             object_owner_email = object_.owner.email
-            if dog_object_increase.views % 20 == 0 and dog_object_increase.views != 0:
+            if dog_object_increase.views % 10 == 0 and dog_object_increase.views != 0:
                 send_views_email(dog_object_increase.name, object_owner_email, dog_object_increase.views)
         return context_data
 
@@ -201,6 +201,18 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
             formset.instance = self.object
             formset.save()
         return super().form_valid(form)
+
+
+    def get_form_class(self):
+        dog_forms = {
+            UserRoles.ADMIN: DogAdminForm,
+            UserRoles.MODERATOR: DogForm,
+            UserRoles.USER: DogForm
+        }
+
+        user_role = self.request.user.role
+        dog_form_class = dog_forms[user_role]
+        return dog_form_class
 
     def get_success_url(self):
         return reverse("dogs:dog_detail", args=[self.kwargs.get("pk")])
