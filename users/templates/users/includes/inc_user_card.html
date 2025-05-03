@@ -11,5 +11,8 @@
         <li><span>Phone:</span><br> {{ object.phone|default:"Not specified" }}</li>
       </ul>
     </div>
+    <div class="card-footer">
+      <a class="user-card-btn" href="{% url 'users:user_detail' object.pk %}">All information</a>
+    </div>
   </div>
 </div>

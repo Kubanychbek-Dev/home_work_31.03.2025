@@ -197,3 +197,14 @@ class UserListView(LoginRequiredMixin, ListView):
         "title": "All our users"
     }
     template_name = "users/users.html"
+
+
+class UserDetailView(DetailView):
+    model = User
+    template_name = "users/user_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data()
+        user_object = context_data["object"]
+        context_data["title"] = f"Profile of user {user_object}"
+        return context_data
