@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.core.cache import cache
+from django.core.mail import send_mail
 
-from .models import Breed
+from .models import Breed, Dog
 
 
 def get_breed_cache():
@@ -14,3 +15,12 @@ def get_breed_cache():
     else:
         breed_list = Breed.objects.all()
     return breed_list
+
+
+def send_views_email(dog_object, owner_email, views_count):
+    send_mail(
+        subject=f"{views_count} views {dog_object}",
+        message=f"Wow! Already {views_count}, views {dog_object}",
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=[owner_email,]
+    )

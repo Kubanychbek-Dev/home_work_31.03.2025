@@ -9,6 +9,7 @@ from django.forms import inlineformset_factory
 from django.core.exceptions import PermissionDenied
 from . models import Breed, Dog, DogParent
 from .forms import DogForm, DogParentForm
+from .services import send_views_email
 from users.models import UserRoles
 
 
@@ -149,6 +150,13 @@ class DogDetailView(DetailView):
         context_data = super().get_context_data(**kwargs)
         object_ = self.get_object()
         context_data["title"] = f"All information {object_}"
+        dog_object_increase = get_object_or_404(Dog, pk=object_.pk)
+        if object_.owner != self.request.user and self.request.user.role not in [UserRoles.ADMIN, UserRoles.MODERATOR]:
+            dog_object_increase.views_count()
+        if object_.owner:
+            object_owner_email = object_.owner.email
+            if dog_object_increase.views % 20 == 0 and dog_object_increase.views != 0:
+                send_views_email(dog_object_increase.name, object_owner_email, dog_object_increase.views)
         return context_data
 
 # @login_required(login_url="users:user_login")
