@@ -40,3 +40,30 @@
   background-color: green;
   border: 1px solid green;
 }
+
+.active-btn {
+  text-align: center;
+  padding: 20px 8px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.active-btn a {
+  color: green;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
+  border: 1px solid black;
+  padding: 8px 6px;
+  border-radius: 4px;
+  transition: all 0.6s;
+}
+
+.active-btn a:hover {
+  color: #fff;
+  background-color: green;
+  border: 1px solid black;
+}

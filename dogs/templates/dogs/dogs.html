@@ -10,8 +10,10 @@
                 {% include "dogs/includes/inc_dog_card.html" with object=object %}
             {% endfor %}
     </div>
-            <a href="{% url 'dogs:dogs_list' %}">Active dogs</a>
-            <a href="{% url 'dogs:dogs_deactivated_list' %}">Inactive dogs</a>
+            <div class="active-btn">
+                <a href="{% url 'dogs:dogs_list' %}">Active dogs</a>
+                <a href="{% url 'dogs:dogs_deactivated_list' %}">Inactive dogs</a>
+            </div>
 </div>
 
 {% endblock%}
