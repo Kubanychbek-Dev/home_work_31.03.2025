@@ -1,0 +1,15 @@
+{% load my_tags %}
+<div class="col-12 col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ object.dog.name }} / {{ object.dog.breed }}</h2>
+        </div>
+        <div class="card-body">
+            <h3>{{ object.title|truncatechars:30 }}</h3>
+            <ul>
+                <li>Created: {{ object.created }}</li>
+                <li>Author: {{ object.author }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
