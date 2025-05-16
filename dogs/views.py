@@ -142,7 +142,7 @@ class DogCreateView(LoginRequiredMixin, CreateView):
 #     return render(request, "dogs/detail.html", context=context)
 
 
-class DogDetailView(DetailView):
+class DogDetailView(LoginRequiredMixin, DetailView):
     model = Dog
     template_name = "dogs/detail.html"
 
