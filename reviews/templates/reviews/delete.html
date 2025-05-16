@@ -1,0 +1,32 @@
+{% extends "dogs/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <form method="post">
+                <div class="card">
+                    <div class="card-header">
+                        {% if object %}
+                        Are you sure to delete?
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-text">{{ object.title|title }}</h5>
+                        <h5 class="card-text">{{ object.dog.name|title }}</h5>
+                    </div>
+                    <div class="card-footer">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-danger">
+                            {% if object %}
+                            Delete
+                            {% endif %}
+                        </button>
+                        <a class="btn btn-primary" href="{% url 'reviews:reviews_list' %}">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

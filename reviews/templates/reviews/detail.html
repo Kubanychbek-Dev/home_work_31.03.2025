@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "dogs/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1>{{ object.dog.name }}</h1>
+                </div>
+                <div class="card-body">
+                    <p>{{ object.content }}</p>
+                    <span>Date: {{ object.created }}</span><br>
+                    <span>Author: {{ object.author|default:"Deleted user" }}</span>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary" href="{% url 'reviews:reviews_list' %}">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

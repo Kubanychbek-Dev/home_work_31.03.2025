@@ -35,6 +35,7 @@ class BreedListView(ListView):
         "title": "All our breeds"
     }
     template_name = "dogs/breeds.html"
+    paginate_by = 3
 
 
 # def breed_dogs_list_view(request, pk: int):
@@ -73,6 +74,7 @@ class DogListView(ListView):
         "title": "All our dogs"
     }
     template_name = "dogs/dogs.html"
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -86,6 +88,7 @@ class DogDeactivatedListView(LoginRequiredMixin, ListView):
         "title": "All our dogs"
     }
     template_name = "dogs/dogs.html"
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = super().get_queryset()

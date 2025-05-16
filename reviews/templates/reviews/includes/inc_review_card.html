@@ -10,6 +10,15 @@
                 <li>Created: {{ object.created }}</li>
                 <li>Author: {{ object.author }}</li>
             </ul>
+            <a class="btn btn-outline-info" href="{% url 'reviews:review_detail' object.slug %}">More details</a>
+             {% if user.is_superuser %}
+            <a class="btn btn-danger" href="{% url 'reviews:review_delete' object.slug %}">Delete review</a>
+            <a class="btn btn-warning" href="{% url 'reviews:review_update' object.slug %}">Change review</a>
+            {% elif object.author == user %}
+            <a class="btn btn-warning" href="{% url 'reviews:review_update' object.slug %}">Change review</a>
+            {% elif user.is_staff %}
+            <a class="btn btn-danger" href="{% url 'reviews:review_delete' object.slug %}">Delete review</a>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -11,6 +11,7 @@
             {% endfor %}
     </div>
             <div class="active-btn">
+                {% include "dogs/includes/inc_pagination.html" %}
                 <a href="{% url 'dogs:dogs_list' %}">Active dogs</a>
                 <a href="{% url 'dogs:dogs_deactivated_list' %}">Inactive dogs</a>
             </div>

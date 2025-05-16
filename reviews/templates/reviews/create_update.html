@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "dogs/base.html" %}
+{% load my_tags %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <form method="post" enctype="multipart/form-data">
+                <div class="card">
+                <div class="card-header">
+                    {% if object %}
+                    Edit review
+                    {% else %}
+                    Add review
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="btn btn-success" value="{% if object %}Save{% else %}Add{% endif %}">
+                    {% if object %}
+                    <a href="{% url 'reviews:review_toggle' object.slug %}" class="btn btn-warning">
+                        {% if object.sign_of_review %}
+                        Deactivate
+                        {% else %}
+                        Activate
+                        {% endif %}
+                    </a>
+                    {% endif %}
+                </div>
+                    <div class="card-footer">
+                        <a href="{% url 'reviews:reviews_list' %}" class="btn btn-primary">Back</a>
+                        {% if object and user.is_superuser or object and object.owner == user%}
+                        <a href="{% url 'reviews:review_delete' object.slug%}" class="btn btn-danger">Delete</a>
+                        {% endif %}
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

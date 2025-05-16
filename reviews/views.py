@@ -7,6 +7,7 @@ from django.core.exceptions import PermissionDenied
 from .models import Review
 from users.models import User, UserRoles
 from .forms import ReviewAdminForm
+from .utils import slug_generator
 
 
 class ReviewListView(ListView):
@@ -15,6 +16,7 @@ class ReviewListView(ListView):
         "title": "All reviews"
     }
     template_name = "reviews/reviews.html"
+    paginate_by = 4
 
     def get_queryset(self):
         return super().get_queryset().filter(sign_of_review=True)
@@ -34,10 +36,20 @@ class ReviewDeactivatedListView(ListView):
 class ReviewCreateView(LoginRequiredMixin, CreateView):
     model = Review
     form_class = ReviewAdminForm
-    template_name =  "reviews/create.html"
+    template_name =  "reviews/create_update.html"
     extra_context = {
         "title": "Add review"
     }
+    
+    def form_valid(self, form):
+        if self.request.user.role not in [UserRoles.USER, UserRoles.ADMIN]:
+            return HttpResponseForbidden
+        slug_object = form.save()
+        if slug_object.slug == "temp_slug":
+            slug_object.slug = slug_generator()
+        slug_object.author = self.request.user
+        slug_object.save()
+        return super().form_valid(form)
 
 
 class ReviewDetailView(DetailView):
@@ -51,7 +63,7 @@ class ReviewDetailView(DetailView):
 class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     model = Review
     form_class = ReviewAdminForm
-    template_name =  "reviews/update.html"
+    template_name =  "reviews/create_update.html"
     extra_context = {
         "title": "Change review"
     }
