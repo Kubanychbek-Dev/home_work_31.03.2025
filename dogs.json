@@ -40,7 +40,7 @@
       "img": "dogs/BREED_Hero_Mobile_0112_german_shepherd.jpg",
       "is_active": true,
       "owner": null,
-      "views": 0
+      "views": 1
     }
   },
   {
@@ -51,7 +51,7 @@
       "breed": 3,
       "img": "dogs/ретривер.jpeg",
       "is_active": true,
-      "owner": 3,
+      "owner": null,
       "views": 0
     }
   },
@@ -89,30 +89,6 @@
       "is_active": true,
       "owner": null,
       "views": 0
-    }
-  },
-  {
-    "model": "dogs.dog",
-    "pk": 10,
-    "fields": {
-      "name": "Body",
-      "breed": 2,
-      "img": "dogs/ретривер_GqZRaFQ.jpeg",
-      "is_active": true,
-      "owner": 3,
-      "views": 0
-    }
-  },
-  {
-    "model": "dogs.dog",
-    "pk": 11,
-    "fields": {
-      "name": "Cooper",
-      "breed": 3,
-      "img": "",
-      "is_active": true,
-      "owner": 4,
-      "views": 39
     }
   },
   {
