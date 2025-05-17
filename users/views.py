@@ -18,6 +18,7 @@ from .services import send_register_email, send_new_password
 
 
 class UserRegisterView(CreateView):
+    """Rendering the page to create a user account"""
     model = User
     form_class = UserRegisterForm
     template_name = "users/user_register.html"
@@ -71,6 +72,7 @@ class UserRegisterView(CreateView):
 
 
 class UserLoginView(LoginView):
+    """Rendering the page to login"""
     form_class = UserLoginForm
     template_name = "users/user_login.html"
     extra_context = {
@@ -92,6 +94,7 @@ class UserLoginView(LoginView):
 
 
 class UserProfileView(UpdateView):
+    """Show user profile"""
     model = User
     form_class = UserForm
     template_name = "users/user_profile_read_only.html"
@@ -123,6 +126,7 @@ class UserProfileView(UpdateView):
 
 
 class UserUpdateView(UpdateView):
+    """Displaying a page for editing user information"""
     model = User
     form_class = UserUpdateForm
     template_name = "users/user_update.html"
@@ -157,6 +161,7 @@ class UserUpdateView(UpdateView):
 
 
 class UserPasswordChangeView(PasswordChangeView):
+    """Displaying the user password change page"""
     form_class = UserChangePasswordForm
     template_name = "users/user_change_password.html"
     success_url = reverse_lazy("users:user_profile")
@@ -177,6 +182,7 @@ class UserPasswordChangeView(PasswordChangeView):
 #     pass
 
 class UserLogoutView(LogoutView):
+    """Logout"""
     template_name = "users/user_logout.html"
     extra_context = {
         "title": "Выход из аккаунта"
@@ -192,6 +198,7 @@ def user_generate_new_password(request):
 
 
 class UserListView(LoginRequiredMixin, ListView):
+    """Displaying a list of users"""
     model = User
     extra_context = {
         "title": "All our users"
@@ -201,6 +208,7 @@ class UserListView(LoginRequiredMixin, ListView):
 
 
 class UserDetailView(DetailView):
+    """User Profile Display"""
     model = User
     template_name = "users/user_detail.html"
 
