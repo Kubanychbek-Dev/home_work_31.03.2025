@@ -7,6 +7,8 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.forms import inlineformset_factory
 from django.core.exceptions import PermissionDenied
+from django.db.models import Q
+
 from . models import Breed, Dog, DogParent
 from .forms import DogForm, DogParentForm, DogAdminForm
 from .services import send_views_email
@@ -46,6 +48,21 @@ class BreedListView(ListView):
 #         "breed_pk": breed_obj.pk
 #     }
 #     return render(request, 'dogs/dogs.html', context=context)
+
+
+class BreedSearchListView(LoginRequiredMixin, ListView):
+    model = Breed
+    template_name = "dogs/breeds.html"
+    extra_context = {
+        "title": "Search result"
+    }
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list = Breed.objects.filter(
+            Q(name__icontains=query)
+        )
+        return object_list
 
 
 class DogBreedListView(LoginRequiredMixin, ListView):
@@ -116,6 +133,26 @@ class DogDeactivatedListView(LoginRequiredMixin, ListView):
 #     }
 #     return render(request, "dogs/create.html", context=context)
 
+
+class DogSearchListView(LoginRequiredMixin, ListView):
+    model = Dog
+    template_name = "dogs/dogs.html"
+    extra_context = {
+        "title": "Search result"
+    }
+    # queryset = Dog.objects.filter(name__icontains="R")
+
+    # def get_queryset(self):
+    #     return Dog.objects.filter(
+    #         Q(name__icontains="R")
+    #     )
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list = Dog.objects.filter(
+            Q(name__icontains=query, is_active=True)
+        )
+        return object_list
 
 class DogCreateView(LoginRequiredMixin, CreateView):
     model = Dog

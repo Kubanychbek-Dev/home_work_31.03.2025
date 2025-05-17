@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="container">
+    {% include "dogs/includes/inc_search_breed_field.html" %}
     <div class="row">
         <h1 class="breeds-title">{{ title }}</h1>
         {% for object in object_list %}
