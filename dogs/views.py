@@ -16,6 +16,7 @@ from users.models import UserRoles
 
 
 def index_view(request):
+    """Home page rendering"""
     context = {
         "object_list": Breed.objects.all()[:3],
         "title": "PetPlace"
@@ -32,6 +33,7 @@ def index_view(request):
 
 
 class BreedListView(ListView):
+    """Displaying a list of breeds"""
     model = Breed
     extra_context = {
         "title": "All our breeds"
@@ -51,6 +53,7 @@ class BreedListView(ListView):
 
 
 class BreedSearchListView(LoginRequiredMixin, ListView):
+    """Searching dog by breed"""
     model = Breed
     template_name = "dogs/breeds.html"
     extra_context = {
@@ -66,6 +69,7 @@ class BreedSearchListView(LoginRequiredMixin, ListView):
 
 
 class DogBreedListView(LoginRequiredMixin, ListView):
+    """Rendering of dogs of the selected breed"""
     model = Dog
     template_name = "dogs/dogs.html"
     extra_context = {
@@ -86,6 +90,7 @@ class DogBreedListView(LoginRequiredMixin, ListView):
 
 
 class DogListView(ListView):
+    """Displaying a list of dogs"""
     model = Dog
     extra_context = {
         "title": "All our dogs"
@@ -100,6 +105,7 @@ class DogListView(ListView):
 
 
 class DogDeactivatedListView(LoginRequiredMixin, ListView):
+    """Render of deactivated dogs"""
     model = Dog
     extra_context = {
         "title": "All our dogs"
@@ -135,6 +141,7 @@ class DogDeactivatedListView(LoginRequiredMixin, ListView):
 
 
 class DogSearchListView(LoginRequiredMixin, ListView):
+    """Searching dog by name"""
     model = Dog
     template_name = "dogs/dogs.html"
     extra_context = {
@@ -155,6 +162,7 @@ class DogSearchListView(LoginRequiredMixin, ListView):
         return object_list
 
 class DogCreateView(LoginRequiredMixin, CreateView):
+    """Rendering a page to create the dog"""
     model = Dog
     form_class = DogForm
     template_name = "dogs/create.html"
@@ -183,6 +191,7 @@ class DogCreateView(LoginRequiredMixin, CreateView):
 
 
 class DogDetailView(LoginRequiredMixin, DetailView):
+    """Show additional information about the dog"""
     model = Dog
     template_name = "dogs/detail.html"
 
@@ -217,6 +226,7 @@ class DogDetailView(LoginRequiredMixin, DetailView):
 
 
 class DogUpdateView(LoginRequiredMixin, UpdateView):
+    """Edit dog information"""
     model = Dog
     form_class = DogForm
     template_name = "dogs/update.html"
@@ -278,6 +288,7 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class DogDeleteView(PermissionRequiredMixin, DeleteView):
+    """Rendering a page to delete the selected dog"""
     model = Dog
     template_name = "dogs/delete.html"
     success_url = reverse_lazy("dogs:dogs_list")
