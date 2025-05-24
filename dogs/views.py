@@ -24,9 +24,6 @@ def index_view(request):
     return render(request, 'dogs/index.html', context=context)
 
 
-
-
-
 class BreedListView(ListView):
     """Displaying a list of breeds"""
     model = Breed
@@ -37,14 +34,7 @@ class BreedListView(ListView):
     paginate_by = 3
 
 
-# def breed_dogs_list_view(request, pk: int):
-#     breed_obj = Breed.objects.get(pk=pk)
-#     context = {
-#         "object_list": Dog.objects.filter(breed_id=pk),
-#         "title": f"Собаки - {breed_obj.name}",
-#         "breed_pk": breed_obj.pk
-#     }
-#     return render(request, 'dogs/dogs.html', context=context)
+
 
 
 class BreedSearchListView(LoginRequiredMixin, ListView):
