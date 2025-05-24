@@ -204,7 +204,7 @@ class UserListView(LoginRequiredMixin, ListView):
         "title": "All our users"
     }
     template_name = "users/users.html"
-    paginate_by = 3
+    paginate_by = 2
 
 
 class UserDetailView(DetailView):
