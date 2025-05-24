@@ -108,6 +108,7 @@ class DogSearchListView(LoginRequiredMixin, ListView):
         )
         return object_list
 
+
 class DogCreateView(LoginRequiredMixin, CreateView):
     """Rendering a page to create the dog"""
     model = Dog
@@ -117,7 +118,7 @@ class DogCreateView(LoginRequiredMixin, CreateView):
         "title": "Добавить собаку"
     }
     success_url = reverse_lazy("dogs:dogs_list")
-    
+
     def form_valid(self, form):
         if self.request.user.role != UserRoles.USER:
             raise PermissionDenied()
@@ -163,7 +164,7 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
         context_data["title"] = f"Изменить информацию о {object_}"
         context_data["formset"] = formset
         return context_data
-    
+
     def form_valid(self, form):
         context_data = self.get_context_data()
         formset = context_data["formset"]
@@ -172,7 +173,6 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
             formset.instance = self.object
             formset.save()
         return super().form_valid(form)
-
 
     def get_form_class(self):
         dog_forms = {

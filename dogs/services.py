@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.mail import send_mail
 
-from .models import Breed, Dog
+from .models import Breed
 
 
 def get_breed_cache():
