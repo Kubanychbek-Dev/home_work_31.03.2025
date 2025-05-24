@@ -9,11 +9,11 @@
                 </div>
                 <div class="card-body">
                     <p>{{ object.content }}</p>
-                    <span>Date: {{ object.created }}</span><br>
-                    <span>Author: {{ object.author|default:"Deleted user" }}</span>
+                    <span>Дата: {{ object.created }}</span><br>
+                    <span>Автор: {{ object.author|default:"Deleted user" }}</span>
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-primary" href="{% url 'reviews:reviews_list' %}">Back</a>
+                    <a class="btn btn-primary" href="{% url 'reviews:reviews_list' %}">Назад</a>
                 </div>
             </div>
         </div>

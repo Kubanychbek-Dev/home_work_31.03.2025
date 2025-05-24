@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         {% if object %}
-                        Are you sure to delete?
+                        Вы уверены?
                         {% endif %}
                     </div>
                     <div class="card-body">
@@ -19,10 +19,10 @@
                         {{ form.as_p }}
                         <button type="submit" class="btn btn-danger">
                             {% if object %}
-                            Delete
+                            Удалить
                             {% endif %}
                         </button>
-                        <a class="btn btn-primary" href="{% url 'reviews:reviews_list' %}">Back</a>
+                        <a class="btn btn-primary" href="{% url 'reviews:reviews_list' %}">Назад</a>
                     </div>
                 </div>
             </form>
