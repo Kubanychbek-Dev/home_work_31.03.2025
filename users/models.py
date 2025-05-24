@@ -15,10 +15,10 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True, verbose_name="email")
     role = models.CharField(max_length=18, choices=UserRoles.choices, default=UserRoles.USER)
-    first_name = models.CharField(max_length=100, verbose_name="First Name", default="Not specified")
-    last_name = models.CharField(max_length=100, verbose_name="Last Name", default="Not specified")
-    phone = models.CharField(max_length=35, unique=True, verbose_name="phone", **NULLABLE)
-    avatar = models.ImageField(upload_to="users/", verbose_name="Avatar", **NULLABLE)
+    first_name = models.CharField(max_length=100, verbose_name="Имя", default="Not specified")
+    last_name = models.CharField(max_length=100, verbose_name="Фамилия", default="Not specified")
+    phone = models.CharField(max_length=35, unique=True, verbose_name="Телефон", **NULLABLE)
+    avatar = models.ImageField(upload_to="users/", verbose_name="Аватар", **NULLABLE)
     is_active = models.BooleanField(default=True, verbose_name="Activity")
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

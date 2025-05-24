@@ -23,7 +23,7 @@ class UserRegisterView(CreateView):
     form_class = UserRegisterForm
     template_name = "users/user_register.html"
     extra_context = {
-        "title": "Create account"
+        "title": "Зарегистрироваться"
     }
 
     def form_valid(self, form):
@@ -104,7 +104,7 @@ class UserProfileView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data()
-        context_data["title"] = f"Your Profile:  {self.get_object()}"
+        context_data["title"] = f"Ваш профиль:  {self.get_object()}"
         return context_data
 
 
@@ -137,7 +137,7 @@ class UserUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data()
-        context_data["title"] = f"Update Profile {self.get_object()}"
+        context_data["title"] = f"Обновить профиль {self.get_object()}"
         return context_data
 
 
@@ -168,7 +168,7 @@ class UserPasswordChangeView(PasswordChangeView):
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data()
-        context_data["title"] = f"Change Password {self.request.user}"
+        context_data["title"] = f"Изменить пароль {self.request.user}"
         return context_data
 
 
@@ -201,7 +201,7 @@ class UserListView(LoginRequiredMixin, ListView):
     """Displaying a list of users"""
     model = User
     extra_context = {
-        "title": "All our users"
+        "title": "Все наши пользователи"
     }
     template_name = "users/users.html"
     paginate_by = 2
@@ -215,5 +215,5 @@ class UserDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data()
         user_object = context_data["object"]
-        context_data["title"] = f"Profile of user {user_object}"
+        context_data["title"] = f"Профиль пользователя {user_object}"
         return context_data
