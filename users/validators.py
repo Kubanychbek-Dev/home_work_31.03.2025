@@ -17,7 +17,6 @@ def validate_password(field):
         }
     ]
 
-
     try:
         if not bool(re.match(pattern, field)):
             print(error_messages[0][language])

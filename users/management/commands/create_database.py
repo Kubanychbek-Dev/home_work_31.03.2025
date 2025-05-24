@@ -24,5 +24,3 @@ class Command(BaseCommand):
                 print(e)
             else:
                 print(f"Database {DATABASE} created")
-
-
