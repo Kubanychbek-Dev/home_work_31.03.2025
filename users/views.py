@@ -1,13 +1,10 @@
 import string
 import random
 
-from django.shortcuts import render, reverse, redirect
-from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.shortcuts import reverse, redirect
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.contrib.auth.views import LoginView, PasswordChangeView, LogoutView
-from django.template.defaultfilters import title
 from django.views.generic import CreateView, UpdateView, DetailView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -30,45 +27,6 @@ class UserRegisterView(CreateView):
         user = form.save()
         send_register_email(user.email)
         return HttpResponseRedirect(reverse("users:user_login"))
-    
-    # def form_valid(self, form):
-    #     self.object = form.save()
-    #     send_register_email(self.object.email)
-    #     return super().form_valid(form)
-
-
-# def user_register_view(request):
-#     form = UserRegisterForm(request.POST)
-#     if request.method == "POST":
-#         if form.is_valid():
-#             new_user = form.save()
-#             new_user.set_password(form.cleaned_data["password"])
-#             new_user.save()
-#             send_register_email(new_user.email)
-#             return HttpResponseRedirect(reverse("users:user_login"))
-#     context = {
-#         "title": "Create account",
-#         "form": UserRegisterForm
-#     }
-#     return render(request, "users/user_register.html", context=context)
-
-
-# def user_login_view(request):
-#     if request.method == "POST":
-#         form = UserLoginForm(request.POST)
-#         if form.is_valid():
-#             cleaned_data = form.cleaned_data
-#             user = authenticate(email=cleaned_data["email"], password=cleaned_data["password"])
-#             if user is not None:
-#                 if user.is_active:
-#                     login(request, user)
-#                     return HttpResponseRedirect(reverse("dogs:index"))
-#             return HttpResponse("Вы не зарегистрированы либо неверно введены данные")
-#     context = {
-#         "title": "Вход в аккаунт",
-#         "form": UserLoginForm
-#     }
-#     return render(request, "users/user_login.html", context=context)
 
 
 class UserLoginView(LoginView):
@@ -78,19 +36,6 @@ class UserLoginView(LoginView):
     extra_context = {
         "title": "Вход в аккаунт"
     }
-
-
-# @login_required(login_url="users:user_login")
-# def user_profile_view(request):
-#     user_object = request.user
-#     if user_object.first_name and user_object.last_name:
-#         user_name = f"{user_object.first_name} {user_object.last_name}"
-#     else:
-#         user_name = "Anonymous user"
-#     context = {
-#         "title": "Your Profile"
-#     }
-#     return render(request, "users/user_profile_read_only.html", context=context)\
 
 
 class UserProfileView(UpdateView):
@@ -106,23 +51,6 @@ class UserProfileView(UpdateView):
         context_data = super().get_context_data()
         context_data["title"] = f"Ваш профиль:  {self.get_object()}"
         return context_data
-
-
-# @login_required(login_url="users:user_login")
-# def user_update_view(request):
-#     user_object = request.user
-#     if request.method == "POST":
-#         form = UserUpdateForm(request.POST, request.FILES, instance=user_object)
-#         if form.is_valid():
-#             user_object = form.save()
-#             user_object.save()
-#             return HttpResponseRedirect(reverse("users:user_profile"))
-#     context = {
-#         "object": user_object,
-#         "title": f"Изменить профиль: {user_object.first_name} {user_object.last_name}",
-#         "form": UserUpdateForm(instance=user_object)
-#     }
-#     return render(request, "users/user_update.html", context=context)
 
 
 class UserUpdateView(UpdateView):
@@ -141,25 +69,6 @@ class UserUpdateView(UpdateView):
         return context_data
 
 
-# @login_required(login_url="users:user_login")
-# def user_change_password_view(request):
-#     user_object = request.user
-#     form = UserChangePasswordForm(user_object, request.POST)
-#     if request.method == "POST":
-#         if form.is_valid():
-#             user_object = form.save()
-#             update_session_auth_hash(request, user_object)
-#             messages.success(request, "Пароль успешно изменен")
-#             return HttpResponseRedirect(reverse("users:user_profile"))
-#         else:
-#             messages.error(request, "Не удалось изменить пароль")
-#     context = {
-#         "title": "Изменить пароль",
-#         "form": form
-#     }
-#     return render(request, "users/user_change_password.html", context=context)
-
-
 class UserPasswordChangeView(PasswordChangeView):
     """Displaying the user password change page"""
     form_class = UserChangePasswordForm
@@ -171,15 +80,6 @@ class UserPasswordChangeView(PasswordChangeView):
         context_data["title"] = f"Изменить пароль {self.request.user}"
         return context_data
 
-
-# @login_required(login_url="users:user_login")
-# def user_logout_view(request):
-#     logout(request)
-#     return redirect("dogs:index")
-
-
-# class UserLogoutView(LogoutView):
-#     pass
 
 class UserLogoutView(LogoutView):
     """Logout"""
