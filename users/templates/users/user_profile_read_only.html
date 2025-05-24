@@ -13,24 +13,24 @@
         </div>
         <div class="profile-info">
           <p class="profile-text">
-            <span class="profile-span">First Name:</span>
+            <span class="profile-span">Имя:</span>
             {{ user.first_name|default:"Not specified" }}
           </p>
           <p class="profile-text">
-            <span class="profile-span">Last Name:</span>
+            <span class="profile-span">Фамилия:</span>
             {{ user.last_name|default:"Not specified" }}
           </p>
           <p class="profile-text">
-            <span class="profile-span">Phone:</span>
+            <span class="profile-span">Телефон:</span>
             {{ user.phone|default:"Not specified" }}
           </p>
           <p class="profile-text">
             <span class="profile-span">Email:</span>
             {{ user.email|default:"Not specified" }}
           </p>
-            <a class="profile-update-link" href="{% url 'users:user_update' %}">Update</a>
-          <a class="profile-update-link" href="{% url 'users:user_change_password' %}">Change password</a>
-          <a class="profile-update-link" href="{% url 'users:user_generate_new_password' %}">Password generation</a>
+            <a class="profile-update-link" href="{% url 'users:user_update' %}">Обновить</a>
+          <a class="profile-update-link" href="{% url 'users:user_change_password' %}">Изменить пароль</a>
+          <a class="profile-update-link" href="{% url 'users:user_generate_new_password' %}">Генерация пароля</a>
         </div>
       </div>
     </div>
