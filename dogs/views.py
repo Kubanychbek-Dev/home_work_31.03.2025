@@ -36,7 +36,7 @@ class BreedListView(ListView):
     """Displaying a list of breeds"""
     model = Breed
     extra_context = {
-        "title": "All our breeds"
+        "title": "Все наши породы"
     }
     template_name = "dogs/breeds.html"
     paginate_by = 3
@@ -57,7 +57,7 @@ class BreedSearchListView(LoginRequiredMixin, ListView):
     model = Breed
     template_name = "dogs/breeds.html"
     extra_context = {
-        "title": "Search result"
+        "title": "Результат поиска"
     }
 
     def get_queryset(self):
@@ -73,7 +73,7 @@ class DogBreedListView(LoginRequiredMixin, ListView):
     model = Dog
     template_name = "dogs/dogs.html"
     extra_context = {
-        "title": "Dogs of the selected breed"
+        "title": "Собаки выбранной породы"
     }
 
     def get_queryset(self):
@@ -93,7 +93,7 @@ class DogListView(ListView):
     """Displaying a list of dogs"""
     model = Dog
     extra_context = {
-        "title": "All our dogs"
+        "title": "Все наши собаки"
     }
     template_name = "dogs/dogs.html"
     paginate_by = 3
@@ -108,7 +108,7 @@ class DogDeactivatedListView(LoginRequiredMixin, ListView):
     """Render of deactivated dogs"""
     model = Dog
     extra_context = {
-        "title": "All our dogs"
+        "title": "Все наши собаки"
     }
     template_name = "dogs/dogs.html"
     paginate_by = 3
@@ -145,7 +145,7 @@ class DogSearchListView(LoginRequiredMixin, ListView):
     model = Dog
     template_name = "dogs/dogs.html"
     extra_context = {
-        "title": "Search result"
+        "title": "Результат поиска"
     }
     # queryset = Dog.objects.filter(name__icontains="R")
 
@@ -167,7 +167,7 @@ class DogCreateView(LoginRequiredMixin, CreateView):
     form_class = DogForm
     template_name = "dogs/create.html"
     extra_context = {
-        "title": "Add dog"
+        "title": "Добавить собаку"
     }
     success_url = reverse_lazy("dogs:dogs_list")
     
@@ -198,7 +198,7 @@ class DogDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         object_ = self.get_object()
-        context_data["title"] = f"All information {object_}"
+        context_data["title"] = f"Вся информация {object_}"
         dog_object_increase = get_object_or_404(Dog, pk=object_.pk)
         if object_.owner != self.request.user and self.request.user.role not in [UserRoles.ADMIN, UserRoles.MODERATOR]:
             dog_object_increase.views_count()
@@ -239,7 +239,7 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
         else:
             formset = DogParentFormset(instance=self.object)
         object_ = self.get_object()
-        context_data["title"] = f"Change information of {object_}"
+        context_data["title"] = f"Изменить информацию о {object_}"
         context_data["formset"] = formset
         return context_data
     
@@ -293,12 +293,12 @@ class DogDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = "dogs/delete.html"
     success_url = reverse_lazy("dogs:dogs_list")
     permission_required = "dogs.delete_dog"
-    permission_denied_message = "You have no rights"
+    permission_denied_message = "У вас нет прав"
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         object_ = self.get_object()
-        context_data["title"] = f"Delete the {object_}"
+        context_data["title"] = f"Удалить {object_}"
         return context_data
 
 

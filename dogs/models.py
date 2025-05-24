@@ -3,8 +3,8 @@ from django.conf import settings
 from users.models import NULLABLE
 
 class Breed(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Name")
-    description = models.CharField(max_length=800, verbose_name="Description")
+    name = models.CharField(max_length=100, verbose_name="Имя")
+    description = models.CharField(max_length=800, verbose_name="Описание")
 
     def __str__(self):
         return f"{self.name}"
@@ -15,12 +15,12 @@ class Breed(models.Model):
 
 
 class Dog(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Dog name")
-    breed = models.ForeignKey(Breed, on_delete=models.CASCADE, verbose_name="Dog Breed")
-    img = models.ImageField(upload_to="dogs/", **NULLABLE, verbose_name="Image")
+    name = models.CharField(max_length=100, verbose_name="Имя собаки")
+    breed = models.ForeignKey(Breed, on_delete=models.CASCADE, verbose_name="Порода собаки")
+    img = models.ImageField(upload_to="dogs/", **NULLABLE, verbose_name="Фото")
     is_active = models.BooleanField(default=True, verbose_name="Active")
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name="Owner")
-    views = models.IntegerField(default=0, verbose_name="Views")
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name="Владелец")
+    views = models.IntegerField(default=0, verbose_name="Просмотры")
 
     def __str__(self):
         return f"{self.name} ({self.breed})"
@@ -36,9 +36,9 @@ class Dog(models.Model):
 
 class DogParent(models.Model):
     dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, verbose_name="Parent's name")
-    breed = models.ForeignKey(Breed, on_delete=models.CASCADE, verbose_name="Parent's breed")
-    birth_date = models.DateField(**NULLABLE, verbose_name="Parent's birthdate")
+    name = models.CharField(max_length=50, verbose_name="Имя родителя")
+    breed = models.ForeignKey(Breed, on_delete=models.CASCADE, verbose_name="Родительская порода")
+    birth_date = models.DateField(**NULLABLE, verbose_name="Дата рождения родителя")
 
     def __str__(self):
         return f"{self.name} ({self.breed})"

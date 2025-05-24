@@ -34,15 +34,17 @@
                   <a class="item-link" href="{% url 'dogs:dogs_list' %}">Собаки</a>
                 </li>
                   <li class="item">
-                  <a class="item-link" href="{% url 'reviews:reviews_list' %}">Our reviews</a>
+                  <a class="item-link" href="{% url 'reviews:reviews_list' %}">Наши отзывы</a>
                 </li>
                 <li class="item">
                   <a class="item-link" href="{% url 'dogs:dog_create' %}">Добавить</a>
                 </li>
                 {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
                      <li class="item">
-                     <a class="item-link" href="{% url 'users:users_list' %}">All users</a>
+                     <a class="item-link" href="{% url 'users:users_list' %}">Все пользователи</a>
                      </li>
+                  {% endif %}
                      <li class="item">
                      <a class="item-link" href="{% url 'users:user_profile' %}">Профиль</a>
                      </li>

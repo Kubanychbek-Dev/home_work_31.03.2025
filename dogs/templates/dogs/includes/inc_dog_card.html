@@ -7,13 +7,13 @@
         <div class="card-body">
           <img class="card-img-top dog-img" src="{{ object.img|dogs_media }}" alt="Dog img">
           <h3 class="card-text">{{ object.breed }}</h3>
-          <a class="dog-btn" href="{% url 'dogs:dog_detail' object.pk %}">Information</a>
+          <a class="dog-btn" href="{% url 'dogs:dog_detail' object.pk %}">Информация</a>
           {% if user.is_authenticated and object.owner == user or user.is_staff %}
              <a class="dog-btn" href="{% url 'dogs:dog_update' object.pk %}">
                {% if user.role == "admin" or user.role == "moderator" %}
-                Change/Delete
+                Изменить/Удалить
                {% elif object.owner == user %}
-                 Change
+                 Изменить
                {% endif %}
              </a>
           {% endif %}
