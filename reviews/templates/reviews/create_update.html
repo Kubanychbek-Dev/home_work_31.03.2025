@@ -8,29 +8,29 @@
                 <div class="card">
                 <div class="card-header">
                     {% if object %}
-                    Edit review
+                    Редактировать отзыв
                     {% else %}
-                    Add review
+                    Добавить отзыв
                     {% endif %}
                 </div>
                 <div class="card-body">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <input type="submit" class="btn btn-success" value="{% if object %}Save{% else %}Add{% endif %}">
+                    <input type="submit" class="btn btn-success" value="{% if object %}Сохранить{% else %}Добавить{% endif %}">
                     {% if object %}
                     <a href="{% url 'reviews:review_toggle' object.slug %}" class="btn btn-warning">
                         {% if object.sign_of_review %}
-                        Deactivate
+                        Деактивировать
                         {% else %}
-                        Activate
+                        Активировать
                         {% endif %}
                     </a>
                     {% endif %}
                 </div>
                     <div class="card-footer">
-                        <a href="{% url 'reviews:reviews_list' %}" class="btn btn-primary">Back</a>
+                        <a href="{% url 'reviews:reviews_list' %}" class="btn btn-primary">Назад</a>
                         {% if object and user.is_superuser or object and object.owner == user%}
-                        <a href="{% url 'reviews:review_delete' object.slug%}" class="btn btn-danger">Delete</a>
+                        <a href="{% url 'reviews:review_delete' object.slug%}" class="btn btn-danger">Удалить</a>
                         {% endif %}
                     </div>
             </div>

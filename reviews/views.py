@@ -13,7 +13,7 @@ from .utils import slug_generator
 class ReviewListView(ListView):
     model = Review
     extra_context = {
-        "title": "All reviews"
+        "title": "Все отзывы"
     }
     template_name = "reviews/reviews.html"
     paginate_by = 4
@@ -38,7 +38,7 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
     form_class = ReviewAdminForm
     template_name =  "reviews/create_update.html"
     extra_context = {
-        "title": "Add review"
+        "title": "Добавить отзыв"
     }
     
     def form_valid(self, form):
@@ -65,7 +65,7 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ReviewAdminForm
     template_name =  "reviews/create_update.html"
     extra_context = {
-        "title": "Change review"
+        "title": "Изменить отзыв"
     }
 
     def get_object(self, queryset=None):
