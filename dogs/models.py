@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from users.models import NULLABLE
 
+
 class Breed(models.Model):
     name = models.CharField(max_length=100, verbose_name="Имя")
     description = models.CharField(max_length=800, verbose_name="Описание")

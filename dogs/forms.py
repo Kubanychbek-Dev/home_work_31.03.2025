@@ -10,7 +10,7 @@ class DogForm(StyleFormMixin, forms.ModelForm):
         exclude = ("owner", "is_active", "views",)
 
 
-class  DogAdminForm(DogForm):
+class DogAdminForm(DogForm):
     class Meta:
         model = Dog
         exclude = ("is_active",)
