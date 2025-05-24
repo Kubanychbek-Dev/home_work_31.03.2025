@@ -34,9 +34,6 @@ class BreedListView(ListView):
     paginate_by = 3
 
 
-
-
-
 class BreedSearchListView(LoginRequiredMixin, ListView):
     """Searching dog by breed"""
     model = Breed
@@ -64,14 +61,6 @@ class DogBreedListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset().filter(breed_id=self.kwargs.get("pk"))
         return queryset
-
-
-# def dogs_list_view(request):
-#     context = {
-#         "object_list": Dog.objects.all(),
-#         "title": "Все собаки",
-#     }
-#     return render(request, 'dogs/dogs.html', context=context)
 
 
 class DogListView(ListView):
@@ -107,24 +96,6 @@ class DogDeactivatedListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-# @login_required(login_url="users:user_login")
-# def dog_create_view(request):
-#     if request.method == "POST":
-#         form = DogForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             # form.save()
-#             dog_object = form.save()
-#             dog_object.owner = request.user
-#             dog_object.save()
-#             return HttpResponseRedirect(reverse("dogs:dogs_list"))
-#
-#     context = {
-#         "title": "Добавить собаку",
-#         "form": DogForm
-#     }
-#     return render(request, "dogs/create.html", context=context)
-
-
 class DogSearchListView(LoginRequiredMixin, ListView):
     """Searching dog by name"""
     model = Dog
@@ -132,12 +103,6 @@ class DogSearchListView(LoginRequiredMixin, ListView):
     extra_context = {
         "title": "Search result"
     }
-    # queryset = Dog.objects.filter(name__icontains="R")
-
-    # def get_queryset(self):
-    #     return Dog.objects.filter(
-    #         Q(name__icontains="R")
-    #     )
 
     def get_queryset(self):
         query = self.request.GET.get("q")
@@ -165,16 +130,6 @@ class DogCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-# @login_required(login_url="users:user_login")
-# def dog_detail_view(request, pk):
-#     dog_object = Dog.objects.get(pk=pk)
-#     context = {
-#         "object": dog_object,
-#         "title": dog_object
-#     }
-#     return render(request, "dogs/detail.html", context=context)
-
-
 class DogDetailView(LoginRequiredMixin, DetailView):
     """Show additional information about the dog"""
     model = Dog
@@ -192,22 +147,6 @@ class DogDetailView(LoginRequiredMixin, DetailView):
             if dog_object_increase.views % 10 == 0 and dog_object_increase.views != 0:
                 send_views_email(dog_object_increase.name, object_owner_email, dog_object_increase.views)
         return context_data
-
-# @login_required(login_url="users:user_login")
-# def dog_update_view(request, pk):
-#     dog_object = get_object_or_404(Dog, pk=pk)
-#     if request.method == "POST":
-#         form = DogForm(request.POST, request.FILES, instance=dog_object)
-#         if form.is_valid():
-#             dog_object = form.save()
-#             dog_object.save()
-#             return HttpResponseRedirect(reverse("dogs:dog_detail", args={pk: pk}))
-#     context = {
-#         "object": dog_object,
-#         "title": "Изменить данные",
-#         "form": DogForm(instance=dog_object)
-#     }
-#     return render(request, "dogs/create.html", context=context)
 
 
 class DogUpdateView(LoginRequiredMixin, UpdateView):
@@ -257,19 +196,6 @@ class DogUpdateView(LoginRequiredMixin, UpdateView):
         if self.object.owner != self.request.user and self.request.user.role != UserRoles.ADMIN:
             raise PermissionDenied()
         return self.object
-
-
-# @login_required(login_url="users:user_login")
-# def dog_delete_view(request, pk):
-#     dog_object = get_object_or_404(Dog, pk=pk)
-#     if request.method == "POST":
-#         dog_object.delete()
-#         return HttpResponseRedirect(reverse("dogs:dogs_list"))
-#     context = {
-#         "object": dog_object,
-#         "title": "Удалить данные",
-#     }
-#     return render(request, "dogs/delete.html", context=context)
 
 
 class DogDeleteView(PermissionRequiredMixin, DeleteView):
