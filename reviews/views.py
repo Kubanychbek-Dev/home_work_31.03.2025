@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.core.exceptions import PermissionDenied
 
 from .models import Review
-from users.models import User, UserRoles
+from users.models import UserRoles
 from .forms import ReviewAdminForm
 from .utils import slug_generator
 
@@ -36,11 +36,11 @@ class ReviewDeactivatedListView(ListView):
 class ReviewCreateView(LoginRequiredMixin, CreateView):
     model = Review
     form_class = ReviewAdminForm
-    template_name =  "reviews/create_update.html"
+    template_name = "reviews/create_update.html"
     extra_context = {
         "title": "Добавить отзыв"
     }
-    
+
     def form_valid(self, form):
         if self.request.user.role not in [UserRoles.USER, UserRoles.ADMIN]:
             return HttpResponseForbidden
@@ -54,7 +54,7 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
 
 class ReviewDetailView(DetailView):
     model = Review
-    template_name =  "reviews/detail.html"
+    template_name = "reviews/detail.html"
     extra_context = {
         "title": "View review"
     }
@@ -63,7 +63,7 @@ class ReviewDetailView(DetailView):
 class ReviewUpdateView(LoginRequiredMixin, UpdateView):
     model = Review
     form_class = ReviewAdminForm
-    template_name =  "reviews/create_update.html"
+    template_name = "reviews/create_update.html"
     extra_context = {
         "title": "Изменить отзыв"
     }
@@ -80,7 +80,7 @@ class ReviewUpdateView(LoginRequiredMixin, UpdateView):
 
 class ReviewDeleteView(PermissionRequiredMixin, DeleteView):
     model = Review
-    template_name =  "reviews/delete.html"
+    template_name = "reviews/delete.html"
     permission_required = "reviews.delete_review"
 
     def get_success_url(self):
