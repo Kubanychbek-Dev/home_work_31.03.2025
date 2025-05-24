@@ -1,0 +1,2 @@
+[flake8]
+exclude = dogs\migrations\*, users\migrations\*, reviews\migrations\*
